@@ -4,4 +4,4 @@ app = FastAPI()
 
 @app.post("/files/")
 async def create_file(file: UploadFile = File(...)):
-    return {"file_size": len(file), "file_name": file.filename}
+    return {"content_type": file.content_type, "file_name": file.filename}
