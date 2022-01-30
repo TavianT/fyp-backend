@@ -32,7 +32,8 @@ def classify_image(img_path):
     print(list(flowers_labels_dict.keys())[list(flowers_labels_dict.values()).index(predicted[0])])
     print(f'acc: {np.max(score) * 100}')
 
-    classification = {}
-    classification['flower'] = list(flowers_labels_dict.keys())[list(flowers_labels_dict.values()).index(predicted[0])]
-    classification['accuray'] = str(round(np.max(score) * 100, 2))
-    print(classification)
+    classification = {
+        'flower': list(flowers_labels_dict.keys())[list(flowers_labels_dict.values()).index(predicted[0])],
+        'accuracy': str(round(np.max(score) * 100, 2))
+    }
+    return classification
