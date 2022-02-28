@@ -1,8 +1,9 @@
-import cv2
+#import cv2
 import tensorflow as tf
 from tensorflow import keras
 import numpy as np
 import os
+from PIL import Image
 
 IMAGE_SHAPE = (224, 224)
 
@@ -22,10 +23,13 @@ flowers_labels_dict = {
 
 
 def classify_image(img_path):
-    img = cv2.imread(img_path)
-    resized_img = cv2.resize(img, IMAGE_SHAPE)
-    resized_img = resized_img.reshape(1,224,224,3)
+    # img = cv2.imread(img_path)
+    # resized_img = cv2.resize(img, IMAGE_SHAPE)
+    # resized_img = resized_img.reshape(1,224,224,3)
+    img = Image.open(img_path)
+    resized_img = img.resize(IMAGE_SHAPE)
     resized_img = np.array(resized_img)
+    resized_img = resized_img.reshape([-1, 224 ,224, 3])
     resized_img = resized_img / 255
     predicted = model.predict(resized_img)
     score = tf.nn.softmax(predicted[0])
