@@ -14,3 +14,6 @@ uvicorn==0.15.0
 uvloop==0.16.0
 watchgod==0.7
 websockets==10.0
+tensorflow==2.7.0
+opencv-python==4.5.5.62
+numpy==1.22.1
