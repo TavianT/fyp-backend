@@ -2,6 +2,7 @@ import cv2
 import tensorflow as tf
 from tensorflow import keras
 import numpy as np
+import os
 
 IMAGE_SHAPE = (224, 224)
 
@@ -31,7 +32,8 @@ def classify_image(img_path):
     predicted = np.argmax(predicted, axis=1)
     print(list(flowers_labels_dict.keys())[list(flowers_labels_dict.values()).index(predicted[0])])
     print(f'acc: {np.max(score) * 100}')
-
+    if os.path.exists(img_path):
+        os.remove(img_path)
     classification = {
         'flower': list(flowers_labels_dict.keys())[list(flowers_labels_dict.values()).index(predicted[0])],
         'accuracy': str(round(np.max(score) * 100, 2))
