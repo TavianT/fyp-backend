@@ -1,6 +1,6 @@
 import json
 import requests
-import cv2
+from PIL import Image
 import numpy as np
 import os
 
@@ -20,10 +20,10 @@ flowers_labels_dict = {
 
 
 def classify_image(img_path):
-    img = cv2.imread(img_path)
-    resized_img = cv2.resize(img, IMAGE_SHAPE)
-    resized_img = resized_img.reshape(1,224,224,3)
+    img = Image.open(img_path)
+    resized_img = img.resize(IMAGE_SHAPE)
     resized_img = np.array(resized_img)
+    resized_img = resized_img.reshape([-1, 224 ,224, 3])
     resized_img = resized_img / 255
 
     api_url = "http://flowermodel.ukwest.azurecontainer.io:8501/v1/models/adv_new_model:predict" 

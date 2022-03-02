@@ -1,0 +1,1 @@
+{"id":"3eb72fd9-572d-47c1-9b9b-11684103c560","space":11910,"runtime":"python3.9","name":"fyp-backend","path":"0eonio","project":"a0gpeiua","account":"144798365827","region":"eu-west-2","deps":["fastapi==0.68.1","python-multipart==0.0.5","uvicorn[standard]==0.15.0","numpy==1.22.1","requests==2.27.1","Pillow==9.0.1"],"envs":null,"public":true,"log_level":"debug","cron":""}
