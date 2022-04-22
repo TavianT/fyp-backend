@@ -27,19 +27,16 @@ def classify_image(img_path):
     resized_img = resized_img / 255
 
     api_url = "http://flowermodel.ukwest.azurecontainer.io:8501/v1/models/adv_new_model:predict" 
-
-
     data = json.dumps({"signature_name": "serving_default", "instances": resized_img.tolist()})
     headers = {"content-type": "application/json"} 
     json_response = requests.post(api_url, data=data, headers=headers) 
     predictions = json.loads(json_response.text)['predictions']
+    
     predicted = np.argmax(predictions, axis=1)
     print(list(flowers_labels_dict.keys())[list(flowers_labels_dict.values()).index(predicted[0])])
-    # print(f'acc: {np.max(score) * 100}')
     if os.path.exists(img_path):
         os.remove(img_path)
     classification = {
         'flower': list(flowers_labels_dict.keys())[list(flowers_labels_dict.values()).index(predicted[0])]
-        # 'accuracy': str(round(np.max(score) * 100, 2))
     }
     return classification
